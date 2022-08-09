@@ -3,7 +3,8 @@ from turtle import Turtle
 snake_tail_start = [(0,0), (-20, 0), (-40, 0)]
 snake_move_distance = 20
 
-class snake:
+
+class Snake():
 	def __init__(self):
 		self.snake_tail = []
 		self.creates_snake()
@@ -11,11 +12,17 @@ class snake:
 
 	def creates_snake(self):
 		for element in snake_tail_start:
-			snake = Turtle("square")
-			snake.color("white")
-			snake.penup()
-			snake.goto(element)
-			self.snake_tail.append(snake)
+			self.add_element_snake(element)
+
+	def add_element_snake(self, position):
+		snake = Turtle("square")
+		snake.color("white")
+		snake.penup()
+		snake.goto(position)
+		self.snake_tail.append(snake)
+
+	def extend_snake(self):
+		self.add_element_snake(self.snake_tail[-1].position())
 
 	def move_snake(self):
 		for element_number in range(len(self.snake_tail) - 1, 0, -1):
